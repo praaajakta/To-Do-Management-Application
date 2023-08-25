@@ -1,0 +1,11 @@
+# Ignore Python bytecode files
+__pycache__/
+
+# Ignore environment-specific settings
+.env
+
+# Ignore database files
+db.sqlite3
+
+# Ignore static files collected for production
+static/

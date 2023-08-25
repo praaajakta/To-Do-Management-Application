@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <title>Registration</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .registration-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .registration-card {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .registration-card h2 {
+            text-align: center;
+        }
+        .registration-card form {
+            margin-top: 20px;
+        }
+        .form-control {
+            border: 2px solid #ced4da;
+            border-radius: 5px;
+            padding: 6px; /* Decrease the size of the input boxes */
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            margin-bottom: 10px; /* Add margin to space the input boxes */
+        }
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+        .btn-primary {
+            background-color: #333; /* Greyish Black */
+            border: none;
+            color: #fff; /* White text */
+            padding: 10px 20px; /* Adjust button size */
+            width: 100%; /* Make button full width */
+        }
+        .btn-primary:hover {
+            background-color: #000; /* Darker greyish black on hover */
+        }
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="registration-container">
+        <div class="registration-card card">
+            <h2 class="card-title">Registration</h2>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" class="form-control" id="{{ form.name.id_for_label }}"
+                           name="{{ form.name.name }}" placeholder="Full Name">
+                    {% if form.name.errors %}
+                    <p class="error-message">{{ form.name.errors.0 }}</p>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="{{ form.username.id_for_label }}"
+                           name="{{ form.username.name }}" placeholder="Username">
+                    {% if form.username.errors %}
+                    <p class="error-message">{{ form.username.errors.0 }}</p>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="{{ form.password1.id_for_label }}"
+                           name="{{ form.password1.name }}" placeholder="Password">
+                    {% if form.password1.errors %}
+                    <p class="error-message">{{ form.password1.errors.0 }}</p>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="{{ form.password2.id_for_label }}"
+                           name="{{ form.password2.name }}" placeholder="Confirm Password">
+                    {% if form.password2.errors %}
+                    <p class="error-message">{{ form.password2.errors.0 }}</p>
+                    {% endif %}
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
