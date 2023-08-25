@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <title>Login</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .registration-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .registration-card {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .registration-card h2 {
+            text-align: center;
+        }
+        .registration-card form {
+            margin-top: 20px;
+        }
+        .form-group label {
+            font-weight: bold;
+            display: none; /* Hide labels */
+        }
+        .form-control {
+            border: 2px solid #ced4da;
+            border-radius: 5px;
+            padding: 10px;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+        /* Change the background color of the login button */
+        .btn-primary {
+            background-color: #333; /* Greyish black color */
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #222; /* Darker shade on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="registration-container">
+        <div class="registration-card card">
+            <h2 class="card-title">Login</h2>
+
+            <!-- Login Form -->
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <!-- Use placeholder attribute instead of labels -->
+                    <input type="text" class="form-control" id="{{ form.username.id_for_label }}"
+                           name="{{ form.username.name }}" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="{{ form.password.id_for_label }}"
+                           name="{{ form.password.name }}" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+            </form>
+
+            <!-- Error Message for Login Failure -->
+            {% if error_message %}
+                <div class="alert alert-danger mt-3">{{ error_message }}</div>
+            {% endif %}
+
+            <!-- Link to Registration Page -->
+            <p class="mt-3 text-center">
+                Don't have an account? <a href="{% url 'registration' %}">Register here</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

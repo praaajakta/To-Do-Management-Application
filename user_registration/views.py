@@ -12,7 +12,7 @@ def registration(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('home')  # Redirect to the home page after successful registration
+            return redirect('home')  # Redirect to the home page after successful login
     else:
         form = RegistrationForm()
     return render(request, 'registration/registration.html', {'form': form})
